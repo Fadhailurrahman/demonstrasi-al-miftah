@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:ital,wght@0,300..900;1,300..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-arabic: "Amiri", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* Custom styles for high-fidelity interactive elements */
+.arabic-text {
+  font-family: var(--font-arabic);
+  direction: rtl;
+  line-height: 2.2;
+}
+
+/* Elegant Islamic repeating pattern overlay */
+.islamic-bg {
+  background-color: #f7f3eb; /* Warm, premium ivory cream */
+  background-image: radial-gradient(#d5c3aa 0.5px, transparent 0.5px), radial-gradient(#d5c3aa 0.5px, #f7f3eb 0.5px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  background-blend-mode: multiply;
+  opacity: 0.95;
+}
+
+/* Custom scrollbars for materials */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(213, 195, 170, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(39, 90, 78, 0.3);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(39, 90, 78, 0.5);
+}
