@@ -8,7 +8,7 @@ interface LandingPageProps {
 
 export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   return (
-    <div className="islamic-bg min-h-screen relative flex flex-col justify-center items-center overflow-hidden px-4 py-12 md:px-16 select-none bg-[#faf7f0]">
+    <div className="islamic-bg min-h-screen relative flex flex-col justify-center items-center overflow-hidden px-4 py-6 sm:py-12 md:px-16 select-none bg-[#faf7f0]">
       {/* Framed Ornamental Border Layers */}
       <CornerMandala position="top-left" />
       <CornerMandala position="top-right" />
@@ -28,7 +28,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="z-20 text-center max-w-2xl px-6 py-12 bg-white/45 backdrop-blur-md border border-[#d4b26f]/20 rounded-2xl shadow-xl shadow-[#275a4e]/5"
+        className="z-20 text-center max-w-2xl px-4 py-8 sm:px-6 sm:py-12 bg-white/45 backdrop-blur-md border border-[#d4b26f]/20 rounded-2xl shadow-xl shadow-[#275a4e]/5"
       >
         {/* Top Mini Islamic Emblem */}
         <div className="mx-auto w-12 h-12 mb-6 flex items-center justify-center rounded-full bg-[#275a4e]/10 border border-[#d4b26f]">

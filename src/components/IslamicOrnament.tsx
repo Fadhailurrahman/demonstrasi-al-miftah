@@ -9,7 +9,7 @@ export const CornerMandala: React.FC<{ position: 'top-left' | 'top-right' | 'bot
   }[position];
 
   return (
-    <div className={`absolute ${rotationClass} w-36 h-36 md:w-56 md:h-56 pointer-events-none z-10 opacity-80 transition-all duration-500`}>
+    <div className={`absolute ${rotationClass} w-20 h-20 sm:w-36 sm:h-36 md:w-56 md:h-56 pointer-events-none z-10 opacity-45 sm:opacity-80 transition-all duration-500`}>
       <svg viewBox="0 0 200 200" fill="none" className="w-full h-full text-emerald-800">
         {/* Outer Curved Framework */}
         <path d="M 0,0 C 120,0 200,80 200,200 L 195,200 C 195,85 115,5 0,5 Z" fill="currentColor" opacity="0.1" />

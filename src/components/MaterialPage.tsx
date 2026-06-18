@@ -42,6 +42,13 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
   const [showExplanation, setShowExplanation] = useState<boolean>(false); // default: false (hidden)
   const [activeAnalysis, setActiveAnalysis] = useState<SentenceAnalysis | null>(null);
 
+  // Set smaller base font size on mobile screens dynamically by default
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.innerWidth < 768) {
+      setFontSize(24);
+    }
+  }, []);
+
   // Reset visibility states when changing material to maintain "Arabic Only" as default for every page/slide
   useEffect(() => {
     setShowHarakat(false);
@@ -60,7 +67,7 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
     
     return (
       <div 
-        className="arabic-text text-center select-text text-[#1e433b] leading-[2.6] tracking-wide font-semibold transition-all duration-300" 
+        className="arabic-text text-center select-text text-[#1e433b] leading-[2.2] md:leading-[2.6] tracking-wide font-semibold transition-all duration-300" 
         style={{ fontSize: `${fontSize}px` }}
       >
         {words.map((chunk, idx) => {
@@ -186,8 +193,8 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
               <Type className="w-3.5 h-3.5 text-[#d4b26f]" />
               <input 
                 type="range" 
-                min="24" 
-                max="46" 
+                min="18" 
+                max="42" 
                 value={fontSize} 
                 onChange={(e) => setFontSize(Number(e.target.value))}
                 className="w-14 md:w-16 h-1 accent-[#275a4e] cursor-pointer"
@@ -209,15 +216,18 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
             className="flex-grow flex flex-col py-1"
           >
             {/* Extremely compact title header */}
-            <div className="text-center mb-3">
-              <h1 className="text-2xl md:text-3.5xl font-serif font-extrabold italic text-[#244f44]">
-                {material.title} : <span className="text-base md:text-xl text-[#3b5e55] not-italic font-sans font-semibold mb-1">{material.subTitle}</span>
+            <div className="text-center mb-3.5 px-2">
+              <h1 className="text-lg sm:text-2xl md:text-3.5xl font-serif font-extrabold italic text-[#244f44] leading-tight">
+                {material.title}
               </h1>
-              <div className="w-16 h-[2.5px] bg-[#d4b26f]/40 mx-auto mt-1"></div>
+              <p className="text-xs sm:text-sm md:text-lg text-[#3b5e55] font-sans font-semibold mt-0.5">
+                {material.subTitle}
+              </p>
+              <div className="w-12 md:w-16 h-[1.5px] md:h-[2.5px] bg-[#d4b26f]/40 mx-auto mt-1.5"></div>
             </div>
 
             {/* Arabic Recitation Canvas Container (The absolute star of the page) */}
-            <div className="bg-[#fafbf9]/95 border-2 border-[#d4b26f]/40 rounded-2xl p-4 md:p-8 shadow-sm relative overflow-hidden flex-grow flex flex-col justify-center min-h-[180px]">
+            <div className="bg-[#fafbf9]/95 border-2 border-[#d4b26f]/40 rounded-2xl p-3.5 sm:p-6 md:p-8 shadow-sm relative overflow-hidden flex-grow flex flex-col justify-center min-h-[180px]">
               
               {/* Star watermark decoration */}
               <div className="absolute right-0 bottom-0 translate-x-8 translate-y-8 w-32 h-32 text-[#d4b26f]/5 opacity-20 pointer-events-none">
@@ -228,9 +238,9 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
 
               {/* Informative Help Badge */}
               {material.analysisSample && material.analysisSample.length > 0 && (
-                <div className="absolute top-2.5 left-3 text-[10px] text-emerald-800/60 flex items-center gap-1 font-sans">
-                  <HelpCircle className="w-3 h-3 text-[#d4b26f]" />
-                  <span>Petunjuk Al-Miftah: Tekan kata bergaris bawah</span>
+                <div className="w-full flex justify-center items-center gap-1.5 text-[10px] sm:text-xs text-emerald-800/75 font-sans bg-emerald-50/70 border border-emerald-600/10 rounded-lg px-2.5 py-1.5 mb-3 sm:mb-5 max-w-fit mx-auto relative z-10">
+                  <HelpCircle className="w-3.5 h-3.5 text-[#d4b26f]" />
+                  <span>Petunjuk Al-Miftah: Ketuk kata bergaris bawah</span>
                 </div>
               )}
 
@@ -370,7 +380,7 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
         </AnimatePresence>
 
         {/* Floating Quick Navigation buttons at the absolute bottom */}
-        <div className="absolute bottom-1 left-0 right-0 flex justify-between items-center z-15 px-1 py-1 bg-[#faf7f0]/95 backdrop-blur-md select-none border-t border-emerald-930/5">
+        <div className="absolute bottom-1 left-0 right-0 flex justify-between items-center z-15 px-1 py-1.5 bg-[#faf7f0]/95 backdrop-blur-md select-none border-t border-emerald-930/5">
           <motion.button
             id="btn-materi-sebelumnya"
             disabled={currentIndex === 0}
@@ -380,7 +390,7 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
             }}
             whileHover={currentIndex > 0 ? { scale: 1.03 } : {}}
             whileTap={currentIndex > 0 ? { scale: 0.97 } : {}}
-            className={`flex items-center gap-1 px-4 py-2 rounded-xl border text-xs font-bold transition-all duration-200 cursor-pointer ${
+            className={`flex items-center gap-1 px-4 py-2.5 min-h-[44px] rounded-xl border text-xs font-bold transition-all duration-200 cursor-pointer ${
               currentIndex === 0 
                 ? 'opacity-30 bg-gray-50 text-gray-400 border-gray-200 cursor-not-allowed' 
                 : 'bg-white hover:bg-emerald-50 text-[#275a4e] border-[#d4b26f]/20 shadow-xs'
@@ -416,7 +426,7 @@ export const MaterialPage: React.FC<MaterialPageProps> = ({
             }}
             whileHover={currentIndex < totalMaterials - 1 ? { scale: 1.03 } : {}}
             whileTap={currentIndex < totalMaterials - 1 ? { scale: 0.97 } : {}}
-            className={`flex items-center gap-1 px-4 py-2 rounded-xl border text-xs font-bold transition-all duration-200 cursor-pointer ${
+            className={`flex items-center gap-1 px-4 py-2.5 min-h-[44px] rounded-xl border text-xs font-bold transition-all duration-200 cursor-pointer ${
               currentIndex === totalMaterials - 1 
                 ? 'opacity-30 bg-gray-50 text-gray-400 border-gray-200 cursor-not-allowed' 
                 : 'bg-[#275a4e] text-white border-transparent shadow-xs hover:bg-[#1e433b]'

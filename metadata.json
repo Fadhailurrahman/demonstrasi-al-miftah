@@ -1,6 +1,7 @@
 {
   "name": "Demonstrasi Baca Kitab",
   "description": "Aplikasi web interaktif untuk demonstrasi membaca kitab Kuning menggunakan Metode Al-Miftah lil Ulum.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
 }

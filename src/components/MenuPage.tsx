@@ -9,7 +9,7 @@ interface MenuPageProps {
 
 export const MenuPage: React.FC<MenuPageProps> = ({ onSelect, materials }) => {
   return (
-    <div className="islamic-bg min-h-screen relative flex flex-col items-center justify-start overflow-hidden px-4 py-16 md:px-16 select-none bg-[#faf7f0]">
+    <div className="islamic-bg min-h-screen relative flex flex-col items-center justify-start overflow-hidden px-4 py-8 sm:py-12 select-none bg-[#faf7f0]">
       {/* Decorative Ornaments */}
       <CornerMandala position="top-left" />
       <CornerMandala position="top-right" />
